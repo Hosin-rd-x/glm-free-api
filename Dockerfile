@@ -10,7 +10,6 @@ FROM alpine:3.20
 RUN adduser -D -u 10001 bridge
 WORKDIR /app
 COPY --from=build /zai-api /app/zai-api
-USER bridge
 ENV PORT=3001 HOST=0.0.0.0
 EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=5s CMD wget -qO- http://127.0.0.1:${PORT}/health || exit 1
